@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Umbrella Secure System</title>
+<style>
+body {
+    background-color: black;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    text-align: center;
+    padding-top: 80px;
+}
+
+#logo {
+    font-size: 40px;
+    color: red;
+    margin-bottom: 30px;
+}
+
+#terminal {
+    width: 60%;
+    margin: auto;
+    border: 1px solid red;
+    padding: 20px;
+    min-height: 120px;
+}
+
+input {
+    background: black;
+    border: 1px solid red;
+    color: #00ff00;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+button {
+    background: darkred;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.red-alert {
+    background-color: darkred !important;
+    color: white !important;
+}
+</style>
+</head>
+<body>
+
+<div id="logo">☣ UMBRELLA CORPORATION ☣</div>
+
+<div id="terminal"></div>
+
+<div id="access" style="display:none;">
+    <input type="password" id="password" placeholder="ENTER PASSWORD">
+    <button onclick="checkPassword()">ACCESS</button>
+</div>
+
+<audio id="errorSound">
+  <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+</audio>
+
+<script>
+let text = "INITIALIZING SYSTEM...\nBIOMETRIC LOCK ENGAGED...\nACCESS LEVEL: ALPHA\n\nENTER PASSWORD:";
+let i = 0;
+let speed = 40;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("terminal").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+    } else {
+        document.getElementById("access").style.display = "block";
+    }
+}
+
+typeWriter();
+
+function checkPassword() {
+    let pass = document.getElementById("password").value;
+
+    if(pass === "LEONKENNEDY") {
+        document.body.style.backgroundColor = "black";
+        document.getElementById("terminal").innerHTML =
+        "🔓 ACCESS GRANTED\n\nRACCOON CITY NEVER DIES...\n\nWELCOME, AGENT KENNEDY.";
+    } else {
+        document.body.classList.add("red-alert");
+        document.getElementById("terminal").innerHTML =
+        "🚨 ACCESS DENIED\n\nBIOHAZARD DETECTED";
+        document.getElementById("errorSound").play();
+        setTimeout(() => {
+            location.reload();
+        }, 3000);
+    }
+}
+</script>
+
+</body>
+</html>
