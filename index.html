@@ -62,13 +62,9 @@ button {
 }
 
 #top-logo {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    z-index: 1000;
-}    
+    width: 220px;
+    margin-top: 20px;
+}
 </style>
 </head>
 <body>
@@ -108,7 +104,7 @@ typeWriter();
 function checkPassword() {
     let pass = document.getElementById("password").value;
 
-    if(pass === "leonskennedy") {
+    if(pass === "victorgideon") {
         document.body.style.backgroundColor = "black";
         document.getElementById("terminal").innerHTML =
         "🔓 ACCESS GRANTED\n\nRACCOON CITY NEVER DIES...\n\nWELCOME, AGENT KENNEDY.";
