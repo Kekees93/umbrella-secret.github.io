@@ -67,6 +67,23 @@ button {
     max-width: 600px;
     margin-top: 20px;
 }
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(5px, -5px); }
+    60% { transform: translate(-5px, -5px); }
+    80% { transform: translate(5px, 5px); }
+    100% { transform: translate(0); }
+}
+
+.glitch-effect {
+    animation: glitch 0.3s infinite;
+}
+
+.flash {
+    background-color: darkred !important;
+}    
 </style>
 </head>
 <body>
@@ -103,6 +120,19 @@ function typeWriter() {
 }
 
 typeWriter();
+
+    window.onload = function() {
+    document.body.classList.add("glitch-effect");
+
+    setTimeout(() => {
+        document.body.classList.add("flash");
+    }, 200);
+
+    setTimeout(() => {
+        document.body.classList.remove("flash");
+        document.body.classList.remove("glitch-effect");
+    }, 800);
+};
 
 function checkPassword() {
     let pass = document.getElementById("password").value;
